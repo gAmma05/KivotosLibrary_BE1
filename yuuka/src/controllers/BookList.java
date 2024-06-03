@@ -32,7 +32,6 @@ import models.Books;
  */
 
 public class BookList extends ArrayList<Books> implements InterfBookList, Serializable{
-    //int cnt = 0
     
     @Override
     public void add() { //add Product
@@ -44,13 +43,13 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
         boolean isDuplicate = false;
         boolean done = false;
         for(Books existingBook : this){
-            if(existingBook.getTitle().equalsIgnoreCase(name)){
+            if(existingBook.getTitle().equalsIgnoreCase(name)){//check if the input already existed in the list before
                 System.out.println(name + " already exists");
-                isDuplicate = true;
+                isDuplicate = true;//
                 break;
             }
         }
-        if(!isDuplicate){
+        if(!isDuplicate){//check if the input is new and not duplicated compared to the inside of the list
             System.out.println("Insert book's price (only accept higher than 10$ stock) : ");//book's price
             int price = sc.nextInt();
             if(price <= 10){
@@ -73,7 +72,7 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
                     min = 1000000000000L;
                     long max;
                     max = 9999999999999L;
-                    long ISBN= ThreadLocalRandom.current().nextLong(min, max + 1);//ISBM
+                    long ISBN= ThreadLocalRandom.current().nextLong(min, max + 1);//randomize ISBN (13 digits)
                     Books book = new Books(ISBN, name, price, ID, authorName, authorID);
                     this.add(book);
                     this.overwriteToFile();
@@ -81,44 +80,12 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
                 }else System.out.println("Author's ID must contain only 4 digits and must not start with 0");
             }else System.out.println("Your book's ID must contain only 6 digits and must not start with 0");
         }
+        //check if book was added successfully or undone
         if(done == true){
             System.out.println("Added successfully");
         }else System.out.println("Failed to add");
     }
     
-    /*
-    @Override
-    public void saveToFile() {
-        try (FileOutputStream fileOutput = new FileOutputStream("src\\data\\product.txt", true);
-            ObjectOutputStream write = new ObjectOutputStream(fileOutput)){
-
-        write.writeObject(this);
-        write.reset();
-        System.out.println("Success");
-        }catch(IOException e){
-            System.out.println("Failed!");
-        }
-    }
-    */
-    
-    /*
-    @Override
-    public void readFile() {
-        //ProductList res = new ProductList()
-        try (FileInputStream fileInput = new FileInputStream("src\\data\\product.txt");
-            ObjectInputStream read = new ObjectInputStream(fileInput)){
-            BookList res = (BookList) read.readObject();
-            for(Books book : res){
-                System.out.println(book.toString());
-            }
-            //System.out.println("Success");
-        }catch(EOFException eof){
-            System.out.println("Failed");
-        }catch (IOException | ClassNotFoundException ex) {
-            //ex.printStackTrace();
-        }
-    }
-    */
     @Override
     public void show(){
         Iterator<Books> it = this.iterator();
@@ -158,9 +125,9 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
                 }
             }
         }
-
+        //check if book was deleted successfully or undone
         if (isRemoved == true) {
-        System.out.println("Book deleted successfully.");
+        System.out.println("Deleted successfully.");
         this.saveToFile();
         } else {
         System.out.println("Book with ID " + delID + " not found.");
@@ -185,7 +152,7 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
                 String newTitle = sc.nextLine();
                 boolean isDuplicate = false;
                 for(Books existingBook : this){
-                    if(existingBook.getTitle().equalsIgnoreCase(newTitle)){
+                    if(existingBook.getTitle().equalsIgnoreCase(newTitle)){//check if the current input for the book equals to other books existed in list or the old name of current book
                         System.out.println(newTitle + " already exists");
                         isDuplicate = true;
                         break;
@@ -194,9 +161,9 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
                 if(!isDuplicate){
                     System.out.println("Insert new book's price (only accept higher than 10$ stock) : ");//book's price
                     int newPrice = sc.nextInt();
-                    if(newPrice <= 10){
+                    if(newPrice <= 10){//check if the price is higher than the given condition
                         System.out.println("Your new book should cost more than 10$!");
-                        return;
+                        return;// return to the menu
                     }
                     
                     System.out.println("Do you want to change the author of this book? (1 = YES, 2 = NO) : ");
@@ -226,14 +193,14 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
                                 long ISBN = book.getISBN();
                                 int ID = book.getID();
                                 Books bok = new Books(ISBN, newTitle, newPrice, ID, newAuthorName, newAuthorID);
-                                this.add(bok);
-                                this.remove(book);
+                                this.add(bok);// add to arraylist
+                                this.remove(book);// remove the old one
                                 this.overwriteToFile();
                                 this.saveToFile();
                             }
                         }else if(isValidated == 2){
                             System.out.println("Failed to delete (Reason : User refused to execute)");
-                            return;
+                            return;//return to the menu
                         }
                     }
                     else if(check == 2){
@@ -256,6 +223,8 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
                 }
             }
         }
+        
+        //check if ID was successfully updated or undone
         if(isFound == false){
             System.out.println(updID + "is not found");
         }
@@ -316,7 +285,7 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
     }
     
     @Override
-    public void overwriteToFile() { //save Product to File
+    public void overwriteToFile() { //clear all data
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("src\\data\\product.dat"))){
                 bw.write("");
                 //bw.write(book.toAString()+ "\n");
