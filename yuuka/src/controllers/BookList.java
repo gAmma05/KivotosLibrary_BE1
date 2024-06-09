@@ -28,8 +28,8 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
         Scanner sc = new Scanner(System.in);
         System.out.println("Insert book's name : ");//book's name
         String name = sc.nextLine();
-        for(char c : name.toCharArray()){
-            if(Character.isDigit(c)){
+        for (char c : name.toCharArray()) {
+            if (Character.isDigit(c)) {
                 System.out.println("The input must be letters");
                 return;
             }
@@ -150,6 +150,12 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
 
                 System.out.println("Insert new book's name : ");//author's name
                 String newTitle = sc.nextLine();
+                for (char c : newTitle.toCharArray()) {
+                    if (Character.isDigit(c)) {
+                        System.out.println("The input must be letters");
+                        return;
+                    }
+                }
                 boolean isDuplicate = false;
                 for (Books existingBook : this) {
                     if (existingBook.getTitle().equalsIgnoreCase(newTitle)) {//check if the current input for the book equals to other books existed in list or the old name of current book
