@@ -9,19 +9,18 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
-import static java.lang.Character.isDigit;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.ThreadLocalRandom;
-import models.InterfBookList;
+import models.IBookList;
 import models.Books;
 
 /**
  *
  * @author NCPC
  */
-public class BookList extends ArrayList<Books> implements InterfBookList, Serializable {
+public class BookList extends ArrayList<Books> implements IBookList {
 
     @Override
     public void add() { //add Product
@@ -110,6 +109,10 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
         Scanner sc = new Scanner(System.in);
         System.out.println("Insert your book's ID to execute deletion : ");
         int delID = sc.nextInt();
+        if(delID < 100000 || delID > 999999){
+            System.out.println("Error input (The input must be between 100000 and 999999");
+            return;
+        }
 
         boolean isRemoved = false;
         Iterator<Books> it = this.iterator();
@@ -145,6 +148,10 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
         Scanner sc = new Scanner(System.in);
         System.out.println("Insert your book's ID to update information of it : ");
         int updID = sc.nextInt();
+        if(updID < 100000 || updID > 999999){
+            System.out.println("Error input (The input must be between 100000 and 999999");
+            return;
+        }
         Iterator<Books> it = this.iterator();
         boolean isUpdated = false;
         boolean isFound = false;

@@ -10,7 +10,7 @@ package models;
  *
  * @author NCPC
  */
-public interface InterfBookList {
+public interface IBookList {
 
     void add();
 

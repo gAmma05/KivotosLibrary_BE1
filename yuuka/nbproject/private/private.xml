@@ -5,7 +5,7 @@
         <group>
             <file>file:/D:/Work/programming/java/yuuka/yuuka/src/models/Books.java</file>
             <file>file:/D:/Work/programming/java/yuuka/yuuka/src/controllers/BookList.java</file>
-            <file>file:/D:/Work/programming/java/yuuka/yuuka/src/models/InterfBookList.java</file>
+            <file>file:/D:/Work/programming/java/yuuka/yuuka/src/models/IBookList.java</file>
             <file>file:/D:/Work/programming/java/yuuka/yuuka/src/WorkWithFile/menu.java</file>
         </group>
     </open-files>

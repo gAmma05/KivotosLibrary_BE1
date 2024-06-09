@@ -7,7 +7,7 @@ package WorkWithFile;
 
 import controllers.BookList;
 import java.util.Scanner;
-import models.InterfBookList;
+import models.IBookList;
 
 /**
  *
@@ -28,7 +28,7 @@ public class menu {
     }
 
     public static void main(String[] args) {
-        InterfBookList list = new BookList();
+        IBookList list = new BookList();
         Scanner sc = new Scanner(System.in);
 
         int option = 0;
