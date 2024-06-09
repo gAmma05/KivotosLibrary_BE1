@@ -59,6 +59,12 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
             if (ID <= 999999 && ID >= 100000) {
                 System.out.println("Insert author's name : ");//author's name
                 String authorName = sc.nextLine();
+                for (char c : authorName.toCharArray()) {
+                    if (Character.isDigit(c)) {
+                        System.out.println("The input must be letters");
+                        return;
+                    }
+                }
                 System.out.println("Insert author's ID (4 digits) : ");//author's ID
                 int authorID = sc.nextInt();
                 if (authorID <= 9999 && authorID >= 1000) {
@@ -179,6 +185,12 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
 
                         System.out.println("Insert new author's name for this book : ");
                         String newAuthorName = sc.nextLine();
+                        for (char c : newAuthorName.toCharArray()) {
+                            if (Character.isDigit(c)) {
+                                System.out.println("The input must be letters");
+                                return;
+                            }
+                        }
 
                         System.out.println("Insert new author's ID for this book : ");
                         int newAuthorID = sc.nextInt();
