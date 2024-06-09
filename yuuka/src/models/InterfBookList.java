@@ -6,33 +6,26 @@
 package models;
 
 //import controllers.ProductList;
-
-
-
 /**
  *
  * @author NCPC
  */
-
-
 public interface InterfBookList {
+
     void add();
-    
+
     void saveToFile();
-    
+
     void overwriteToFile();
-    
-    //void showBookFromFile();
-    
+
     void show();
-    
+
     void delete();
-    
+
     void update();
-    
+
     void searchByTitle();
-    
+
     void searchByAuthor();
-    
-    //BookList readFile();
+
 }
