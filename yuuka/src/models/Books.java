@@ -5,13 +5,11 @@
  */
 package models;
 
-import java.io.Serializable;
-
 /**
  *
  * @author NCPC
  */
-public class Books implements Serializable {
+public class Books {
 
     private long ISBN;
     private String title;

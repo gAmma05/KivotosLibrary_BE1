@@ -256,6 +256,12 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
         System.out.print("Insert book's title to search : ");
         String findTitle = sc.nextLine();
         boolean isFound = false;
+        for (char c : findTitle.toCharArray()) {
+            if (Character.isDigit(c)) {
+                System.out.println("The input must be letters");
+                return;
+            }
+        }
 
         for (Books existingBook : this) {
             if (existingBook.getTitle().equalsIgnoreCase(findTitle)) {
@@ -274,6 +280,12 @@ public class BookList extends ArrayList<Books> implements InterfBookList, Serial
         System.out.print("Insert author's name to search for books : ");
         String findAuthor = sc.nextLine();
         boolean isFound = false;
+        for (char c : findAuthor.toCharArray()) {
+            if (Character.isDigit(c)) {
+                System.out.println("The input must be letters");
+                return;
+            }
+        }
 
         for (Books existingBook : this) {
             if (existingBook.getAuthorName().equalsIgnoreCase(findAuthor)) {
